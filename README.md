@@ -4,25 +4,22 @@ This project took Microsoft's Excel, one of the most omnipresent pieces of softw
 
 ## Set up
 
-### For Users
+### Using online version
 
-* Download the manifest.xml file from the Excel Music folder
-* Download the Excel Music spreadsheet (.xlsx)
-* Open Excel (a version that supports Add-ins - the online version works fine)
-* (Upload and) open the spreadsheet.
+* Download this [manifest.xml file](http://localhost:5000/excello)
+* Open [this spreadsheet](http://localhost:5000/excello) (in an Excel version that supports add-ins)
 * Insert > Office Add-ins > Upload My Add-in
-* Find and upload the manifest file
-* Excello will now be available to open from the home tab.
+* Find and upload the manifest.xml file you downloaded
+* Excello will now be available in your home tab in the ribbon
 
-### For Developers
+### Running locally
 
-- Clone repo
-- Sort out node stuff
-- run from within the repo (npm run start:web)
-- Open included spreadsheet in Excel Online
-- Add the local_manifest from this project
-
-This is helpful: https://docs.microsoft.com/en-us/office/dev/add-ins/tutorials/excel-tutorial?tutorial-step=1
+- Clone the Github Repo
+- Run with Node ([helpful Microsoft tutorial](https://docs.microsoft.com/en-us/office/dev/add-ins/tutorials/excel-tutorial?tutorial-step=1))
+- Open Excel (a version that supports add-ins)
+- Insert > Office Add-ins > Upload My Add-in
+- Find and upload the local_manifest.xml file you downloaded
+- Excello will now be available in your home tab in the ribbon
 
 ## Using Excello
 
