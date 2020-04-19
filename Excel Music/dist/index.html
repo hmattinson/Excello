@@ -1,0 +1,272 @@
+<!-- Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See full license in root of repo. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpreadBeat</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.debug.js"></script>
+
+    <!-- LOCAL -->
+    <!-- <link rel="stylesheet" href="node_modules/office-ui-fabric-js/dist/css/fabric.min.css" /> -->
+    <!-- <link rel="stylesheet" href="node_modules/office-ui-fabric-js/dist/css/fabric.components.css" /> -->
+
+    <!-- CDN -->
+    <!-- For the Office UI Fabric, go to http://aka.ms/office-ui-fabric to learn more. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.min.css" />
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.2.0/css/fabric.components.min.css" />
+
+    <script src="fabric.min.js"></script>
+
+    <!-- Template styles -->
+    <link href="app.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+        <div style="width: 100%; padding:10px">
+            <h1 class="ms-font-l">Select Sheet</h1>
+
+            <select name="sheet_select" id="sheet_select">
+                <option value="Tutorial">Tutorial</option>
+                <option value="Examples">Examples</option>
+                <option value="Exercise 1">Exercise 1</option>
+                <option value="Exercise 1 Solution">Exercise 1 Solution</option>
+                <option value="Exercise 2">Exercise 2</option>
+                <option value="Exercise 2 Solution">Exercise 2 Solution</option>
+                <option value="Christmas">Christmas</option>
+            </select>
+        
+            <button id="refresh" onclick="update_select">
+                <span>refresh</span>
+            </button>
+        </div>
+
+        <div style="width: 100%; padding:10px">
+            <h1 class="ms-font-l">Turtles</h1>
+
+            <button id="run" class="ms-Button">
+                <span class="ms-Button-label">Play</span>
+            </button>
+        
+            <button id="stop" class="ms-Button">
+                <span class="ms-Button-label">Stop</span>
+            </button>
+                    
+            <button id="toggle" class="ms-Button">
+                <span class="ms-Button-label">Toggle activation</span>
+            </button>
+
+            <!-- <button id="test" class="ms-Button">
+                <span class="ms-Button-label">Test</span>
+            </button> -->
+
+            <h1 class="ms-font-m">Live Turtles</h1>
+            <div style="width: 100%; padding: 10px" id="live_turtles">
+            </div>
+        </div>
+
+        <div  style="width: 100%; padding:10px"">
+            <h1 class="ms-font-l">Insert Chords</h1>
+
+            <table align="left">
+                <tr>
+                    <td class="ms-font-s">Note:</td>
+                    <td>
+                    <select name="chord_note" id="chord_note">
+                        <option value="C">C</option>
+                        <option value="C#">C#</option>
+                        <option value="D">D</option>
+                        <option value="D#">D#</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="F#">F#</option>
+                        <option value="G">G</option>
+                        <option value="G#">G#</option>
+                        <option value="A">A</option>
+                        <option value="A#">A#</option>
+                        <option value="B">B</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ms-font-s">Type:</td>
+                    <td>
+                        <select name="chord_type" id="chord_type">
+                                <optgroup label="Common Chords">
+                                    <option value="7">7</option>
+                                    <option value="M">M</option>
+                                    <option value="Maj7">Maj7</option>
+                                    <option value="m">m</option>
+                                    <option value="m7">m7</option>
+                                </optgroup>
+                                <optgroup label="All Chords">
+                                    <option value="+add#9">+add#9</option>
+                                    <option value="11">11</option>
+                                    <option value="11b9">11b9</option>
+                                    <option value="13">13</option>
+                                    <option value="13#11">13#11</option>
+                                    <option value="13#9">13#9</option>
+                                    <option value="13#9#11">13#9#11</option>
+                                    <option value="13b5">13b5</option>
+                                    <option value="13b9">13b9</option>
+                                    <option value="13b9#11">13b9#11</option>
+                                    <option value="13no5">13no5</option>
+                                    <option value="13sus4">13sus4</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="64">64</option>
+                                    <option value="69#11">69#11</option>
+                                    <option value="7">7</option>
+                                    <option value="7#11">7#11</option>
+                                    <option value="7#11b13">7#11b13</option>
+                                    <option value="7#5">7#5</option>
+                                    <option value="7#5#9">7#5#9</option>
+                                    <option value="7#5b9">7#5b9</option>
+                                    <option value="7#5b9#11">7#5b9#11</option>
+                                    <option value="7#5sus4">7#5sus4</option>
+                                    <option value="7#9">7#9</option>
+                                    <option value="7#9#11">7#9#11</option>
+                                    <option value="7#9#11b13">7#9#11b13</option>
+                                    <option value="7#9b13">7#9b13</option>
+                                    <option value="7add6">7add6</option>
+                                    <option value="7b13">7b13</option>
+                                    <option value="7b5">7b5</option>
+                                    <option value="7b6">7b6</option>
+                                    <option value="7b9">7b9</option>
+                                    <option value="7b9#11">7b9#11</option>
+                                    <option value="7b9#9">7b9#9</option>
+                                    <option value="7b9b13">7b9b13</option>
+                                    <option value="7b9b13#11">7b9b13#11</option>
+                                    <option value="7no5">7no5</option>
+                                    <option value="7sus4">7sus4</option>
+                                    <option value="7sus4b9">7sus4b9</option>
+                                    <option value="7sus4b9b13">7sus4b9b13</option>
+                                    <option value="9">9</option>
+                                    <option value="9#11">9#11</option>
+                                    <option value="9#11b13">9#11b13</option>
+                                    <option value="9#5">9#5</option>
+                                    <option value="9#5#11">9#5#11</option>
+                                    <option value="9b13">9b13</option>
+                                    <option value="9b5">9b5</option>
+                                    <option value="9no5">9no5</option>
+                                    <option value="9sus4">9sus4</option>
+                                    <option value="M">M</option>
+                                    <option value="M#5">M#5</option>
+                                    <option value="M#5add9">M#5add9</option>
+                                    <option value="M13">M13</option>
+                                    <option value="M13#11">M13#11</option>
+                                    <option value="M6">M6</option>
+                                    <option value="M6#11">M6#11</option>
+                                    <option value="M69">M69</option>
+                                    <option value="M69#11">M69#11</option>
+                                    <option value="M7#11">M7#11</option>
+                                    <option value="M7#5">M7#5</option>
+                                    <option value="M7#5sus4">M7#5sus4</option>
+                                    <option value="M7#9#11">M7#9#11</option>
+                                    <option value="M7add13">M7add13</option>
+                                    <option value="M7b5">M7b5</option>
+                                    <option value="M7b6">M7b6</option>
+                                    <option value="M7b9">M7b9</option>
+                                    <option value="M7sus4">M7sus4</option>
+                                    <option value="M9">M9</option>
+                                    <option value="M9#11">M9#11</option>
+                                    <option value="M9#5">M9#5</option>
+                                    <option value="M9#5sus4">M9#5sus4</option>
+                                    <option value="M9b5">M9b5</option>
+                                    <option value="M9sus4">M9sus4</option>
+                                    <option value="Madd9">Madd9</option>
+                                    <option value="Maddb9">Maddb9</option>
+                                    <option value="Maj7">Maj7</option>
+                                    <option value="Mb5">Mb5</option>
+                                    <option value="Mb6">Mb6</option>
+                                    <option value="Msus2">Msus2</option>
+                                    <option value="Msus4">Msus4</option>
+                                    <option value="m">m</option>
+                                    <option value="m#5">m#5</option>
+                                    <option value="m11">m11</option>
+                                    <option value="m11A 5">m11A 5</option>
+                                    <option value="m11b5">m11b5</option>
+                                    <option value="m13">m13</option>
+                                    <option value="m6">m6</option>
+                                    <option value="m69">m69</option>
+                                    <option value="m7">m7</option>
+                                    <option value="m7#5">m7#5</option>
+                                    <option value="m7add11">m7add11</option>
+                                    <option value="m7b5">m7b5</option>
+                                    <option value="m9">m9</option>
+                                    <option value="m9#5">m9#5</option>
+                                    <option value="m9b5">m9b5</option>
+                                    <option value="mM9">mM9</option>
+                                    <option value="mM9b6">mM9b6</option>
+                                    <option value="mMaj7">mMaj7</option>
+                                    <option value="mMaj7b6">mMaj7b6</option>
+                                    <option value="madd4">madd4</option>
+                                    <option value="madd9">madd9</option>
+                                    <option value="mb6M7">mb6M7</option>
+                                    <option value="mb6b9">mb6b9</option>
+                                    <option value="o">o</option>
+                                    <option value="o7">o7</option>
+                                    <option value="o7M7">o7M7</option>
+                                    <option value="oM7">oM7</option>
+                                    <option value="sus24">sus24</option>
+                                </optgroup>
+                            </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ms-font-s">Inversion:</td>
+                    <td>
+                            <select name="inversion" id="inversion">
+                                    <option value=0>root</option>
+                                    <option value=1>1st</option>
+                                    <option value=2>2nd</option>
+                                    <option value=3>3rd</option>
+                                    <option value=4>4th</option>
+                                    <option value=5>5th</option>
+                                    <option value=6>6th</option>
+                                </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ms-font-s">Octave:</td>
+                    <td>
+                            <select name="octave" id="octave">
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option selected=selected value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                </select>
+                    </td>
+                </tr>
+                <tr>
+                        <td><button id="insertChord" class="ms-Button">
+                                <span class="ms-Button-label">Insert</span>
+                        </button></td>
+                        <td>
+                        
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+
+    <!-- <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script> -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="app.js"></script></body>
+
+

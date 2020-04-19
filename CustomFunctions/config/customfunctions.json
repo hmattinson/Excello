@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/office-js/custom-functions.schema.json",
+  "functions": [
+    {
+      "id": "modulate",
+      "name": "MODULATE",
+      "description": "Modulate a note by an interval",
+      "helpUrl": "https://github.com/hmattinson/ExcelMusic",
+      "result": {
+        "type": "string",
+        "dimensionality": "scalar"
+      },
+      "parameters": [
+        {
+          "name": "note",
+          "description": "note to transpose",
+          "type": "string",
+          "dimensionality": "scalar"
+        },
+        {
+          "name": "interval",
+          "description": "transposition interval",
+          "type": "string",
+          "dimensionality": "scalar"
+        }
+      ]
+    },
+    {
+      "id": "turtle",
+      "name": "TURTLE",
+      "description": "create a turtle definition",
+      "helpUrl": "https://github.com/hmattinson/ExcelMusic",
+      "result": {
+          "type": "string",
+          "dimensionality": "scalar"
+      },
+      "parameters": [
+        {
+            "name": "start cell",
+            "description": "cell the turtle starts in",
+            "type": "string",
+            "dimensionality": "matrix"
+        },
+        {
+          "name": "instructions",
+          "description": "the movements the turtle takes",
+          "type": "string",
+          "dimensionality": "scalar"
+        },
+        {
+          "name": "speed",
+          "description": "cells per minute",
+          "type": "number",
+          "dimensionality": "scalar",
+          "optional": true
+        },
+        {
+          "name": "loops",
+          "description": "how many times the path is followed",
+          "type": "number",
+          "dimensionality": "scalar",
+          "optional": true
+        }
+      ]
+    }
+  ]
+}
