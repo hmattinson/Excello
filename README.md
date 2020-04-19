@@ -8,12 +8,11 @@ This project took Microsoft's Excel, one of the most omnipresent pieces of softw
 
 * Download the manifest.xml file from the Excel Music folder
 * Download the Excel Music spreadsheet (.xlsx)
-* Log into Excel Online (University members can use: [https://universityofcambridgecloud-my.sharepoint.com](https://universityofcambridgecloud-my.sharepoint.com/))
-* Upload and open the spreadsheet.
-* On the Insert tab click Office Add-ins
-* In the top-right of the window click "upload my add-in"
+* Open Excel (a version that supports Add-ins - the online version works fine)
+* (Upload and) open the spreadsheet.
+* Insert > Office Add-ins > Upload My Add-in
 * Find and upload the manifest file
-* The add-in will now be available to open from the home tab.
+* Excello will now be available to open from the home tab.
 
 ### For Developers
 
